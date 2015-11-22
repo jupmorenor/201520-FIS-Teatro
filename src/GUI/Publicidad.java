@@ -1,4 +1,4 @@
-package ventanas;
+package GUI;
 
 import java.awt.Container;
 import javax.swing.JButton;
