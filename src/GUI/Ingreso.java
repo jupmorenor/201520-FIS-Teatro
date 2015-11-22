@@ -68,7 +68,7 @@ public class Ingreso extends JFrame {
                 acceso = new Reservas();
                 break;
             case "Encargado subscripciones":
-                acceso = new Subcripciones();
+                acceso = new Suscripciones();
                 break;
             case "Director logistica":
                 acceso = new Logistica();
@@ -86,7 +86,7 @@ public class Ingreso extends JFrame {
                 System.out.println("Se accedio corectamente");
                 this.dispose();
             } else {
-                System.out.println("ContraseÃ±a incorrecta");
+                System.out.println("Contraseña incorrecta");
                 System.exit(0);
             }
         } else {
