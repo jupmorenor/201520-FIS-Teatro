@@ -7,6 +7,14 @@ import javax.swing.JLabel;
 import javax.swing.JTextField;
 import javax.swing.WindowConstants;
 
+/*
+Encargado reservas-----------78463
+Encargado subscripciones-----5550
+Director logistica-----------12345
+Publicista-------------------56322
+Encargado pagos--------------62345
+*/
+
 public class Ingreso extends JFrame {
 
     private final JButton btnIngresar;
