@@ -21,6 +21,9 @@ Publicista-------------------56322
 Encargado pagos--------------62345
 */
 
+/**
+ * Esta clase se encarga del ingreso al programa
+ */
 public class Ingreso extends JFrame {
 
     private final JButton btnIngresar;

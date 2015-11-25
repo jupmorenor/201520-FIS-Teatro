@@ -11,6 +11,10 @@ import GUI.Contraseña;
 import logica.IDirLogistica;
 import logica.Teatro;
 
+/**
+ * Esta ventana se encarga de que el director de logistica
+ * pueda interactuar con el sistema
+ */
 public class Logistica extends JFrame implements Contraseña{
 
     private final JButton btnConsultar;

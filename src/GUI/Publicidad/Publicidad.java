@@ -13,6 +13,10 @@ import GUI.Suscripciones.Suscripciones;
 import logica.IPublicista;
 import logica.Teatro;
 
+/**
+ * Esta ventana esta creada para que el publicista
+ * pueda interactuar con el sistema *
+ */
 public class Publicidad extends JFrame implements Contraseña{
 
     private final JButton btnAgregar;

@@ -11,6 +11,11 @@ import logica.IEncSuscripciones;
 import logica.Suscripcion;
 import logica.Teatro;
 
+/**
+ * Esta ventana es hecha para que el encargado de subscripciones
+ * pueda interactuar con el sistema
+ *
+ */
 public class Suscripciones extends JFrame implements Contraseña{
 
     private final JButton btnActualizar;

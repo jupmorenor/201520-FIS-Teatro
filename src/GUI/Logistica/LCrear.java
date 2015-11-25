@@ -10,6 +10,10 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JTextField;
 
+/**
+ * Esta ventana se encarga del proceso de
+ * creacion de un evento
+ */
 public class LCrear extends JFrame{
 	
 	private final JTextField txtNombre;

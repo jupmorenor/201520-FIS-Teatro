@@ -7,6 +7,11 @@ import javax.swing.WindowConstants;
 
 import GUI.Contraseña;
 
+/**
+ * Esta ventana esta para que el encargado de reservas
+ * pueda interactuar con el sistema
+ *
+ */
 public class Reserva extends JFrame implements Contraseña{
 
     private final JButton btnConsultar;

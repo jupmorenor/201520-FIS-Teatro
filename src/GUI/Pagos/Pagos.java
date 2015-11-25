@@ -7,8 +7,14 @@ import javax.swing.WindowConstants;
 
 import GUI.Contraseña;
 
+/**
+ * Esta ventana esta para que el encargado de pagos
+ * pueda interactuar con el sistema
+ *
+ */
 public class Pagos extends JFrame implements Contraseña{
 
+	
     private final JButton btnPagar;
     
     public Pagos() {

@@ -8,6 +8,11 @@ import javax.swing.JLabel;
 import javax.swing.JTextField;
 import javax.swing.WindowConstants;
 
+/**
+ * Esta ventana hace parte del caso de uso
+ * crear subscripcion
+ *
+ */
 public class SCrear extends JFrame{
 	
 	private final JTextField txtNombre;
