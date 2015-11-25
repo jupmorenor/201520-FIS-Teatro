@@ -21,6 +21,7 @@ public class Logistica extends JFrame implements Contraseña{
     private final JButton btnCrear;
     
     private LCrear lCrear;
+    private LAcomodar lAcomodar;
     private final IDirLogistica iDirLogistica;
     
     public Logistica() {
@@ -55,6 +56,7 @@ public class Logistica extends JFrame implements Contraseña{
     
     public void pasarDatosCrear(Date fecha, String nombre, int edad, int valor){
     	iDirLogistica.crearEvento(fecha, nombre, edad, valor);
+    	lAcomodar = new LAcomodar(this);
     }
 
 	@Override
@@ -64,6 +66,13 @@ public class Logistica extends JFrame implements Contraseña{
     
     public static void main(String[] args) {
 		Logistica logistica = new Logistica();
+	}
+
+	public void pasarDatosAcomodar(int[][] mtzIntPalco1, int[][] mtzIntPalco2, int[][] mtzIntPalco3,
+			int[][] mtzIntPalco4, int[][] mtzIntPlatea, int[][] mtzIntAnfiteatro) {
+		iDirLogistica.modificarSeccion(mtzIntPalco1, mtzIntPalco2, mtzIntPalco3,
+				mtzIntPalco4, mtzIntPlatea, mtzIntAnfiteatro);
+		
 	}
 
 }

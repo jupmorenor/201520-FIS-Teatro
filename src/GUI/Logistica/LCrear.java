@@ -125,5 +125,6 @@ public class LCrear extends JFrame{
 		int valor = Integer.parseInt(txtValorBase.getText());
 		
 		logistica.pasarDatosCrear(fecha, nombre, edad, valor);
+		this.dispose();
 	}
 }

@@ -34,7 +34,8 @@ public class Teatro implements IDirLogistica, IEncSuscripciones, IPublicista, IE
 		return e;
 	}
 
-	public void modificarSeccion() {
+	public void modificarSeccion(int[][] mtzIntPalco1, int[][] mtzIntPalco2, int[][] mtzIntPalco3,
+			int[][] mtzIntPalco4, int[][] mtzIntPlatea, int[][] mtzIntAnfiteatro) {
 		//FIXME hay que revisar la sala primero
 	}
 
