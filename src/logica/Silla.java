@@ -15,6 +15,8 @@ public class Silla{
 	private char fila;
 
 	private int numero;
+	
+	private int reserva;
 
 	public Silla(char fila, int numero, String seccion) {
 		this.fila = fila;
@@ -46,7 +48,8 @@ public class Silla{
 		return seccion;
 	}
 
-	public void reservarSilla() {
+	public void reservarSilla(int reserva) {
+		this.reserva = reserva;
 		estado = RESERVADA;
 	}
 

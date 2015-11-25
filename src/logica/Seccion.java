@@ -21,12 +21,11 @@ public class Seccion {
 
 	private String estado;
 
-	private ArrayList<Silla> sillas;
+	private Silla[][] sillas;
 	
 	private int maximoSillas;
 	
 	public Seccion(int maxSillas, String tipo) {
-		sillas = new ArrayList<Silla>();
 		maximoSillas = maxSillas;
 		estado = UTILIZABLE;
 		this.tipo = tipo;
@@ -52,8 +51,12 @@ public class Seccion {
 		return tipo == LLENO;
 	}
 
-	public ArrayList<Silla> darSillas() {
+	public Silla[][] darSillas() {
 		return sillas;
+	}
+	
+	public void setSillas(Silla[][] sillas) {
+		this.sillas = sillas;
 	}
 
 }

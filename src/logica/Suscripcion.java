@@ -6,13 +6,12 @@ public class Suscripcion {
 
 	private String nombre;
 
-	private int cupo;
+	private int cupo;	
 
-	private Reserva reserva;
-
-	public Suscripcion(int cedula, String nombre) {
+	public Suscripcion(int cedula, String nombre, int cupo) {
 		this.cedula = cedula;
 		this.nombre = nombre;
+		this.cupo = cupo;
 	}
 
 	public int darCedula() {

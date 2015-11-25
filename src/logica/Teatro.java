@@ -1,37 +1,43 @@
 package logica;
 
+import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.Date;
 import java.awt.Image;
+
+import conexionBD.Conector;
 
 public class Teatro implements IDirLogistica, IEncSuscripciones, IPublicista, IEncReservas, IEncPagos {
 
 	private int totalRecaudado;
 
-	private ArrayList<Evento> eventos;
+	private Evento evento;
 
-	private ArrayList<Reserva> reservas;
+	private Reserva reserva;
 
-	private ArrayList<Suscripcion> suscripciones;
+	private Suscripcion suscripcion;
 
-	private ArrayList<Sala> salas;
+	private Sala sala;
+	
+	private Conector con;
+	
+	private ResultSet tabla;
 	
 	public Teatro() {
-		eventos = new ArrayList<Evento>();
-		reservas = new ArrayList<Reserva>();
-		suscripciones = new ArrayList<Suscripcion>();
-		salas = new ArrayList<Sala>();
+
 	}
 	
 	public Evento consultarEvento(String nombre) {
-		Evento e = null;
-		for(int i=0; i<eventos.size(); i++) {
-			if (nombre == eventos.get(i).darNombre()) {
-				e = eventos.get(i);
-				break;
-			}
+		con = new Conector("localhost", "BDTeatro", "postgres", "Yamile_00");
+		con.SetCadena("SELECT * FROM evento WHERE s_nombre='" + nombre + "';");
+		tabla = con.consultar();
+		try {
+			evento = new Evento(tabla.getDate("f_evento"), nombre, tabla.getInt("n_edad_min"), tabla.getInt("n_val_base"));
+		} catch (Exception e) {
+			return null;
 		}
-		return e;
+		con.cerrar();
+		return evento;
 	}
 
 	public void modificarSeccion() {
@@ -42,9 +48,10 @@ public class Teatro implements IDirLogistica, IEncSuscripciones, IPublicista, IE
 	/**
 	 * @see logica.IDirLogistica#crearEvento(java.util.Date, java.lang.String, int, int)
 	 */
-	public void crearEvento(Date f, String nom, int ed, int val) {
-		Evento e = new Evento(f, nom, ed, val);
-		eventos.add(e);
+	public void crearEvento(Date f, String nom, int ed, int val) {		
+		con = new Conector("localhost", "BDTeatro", "postgres", "Yamile_00");
+
+
 	}
 
 
@@ -60,14 +67,16 @@ public class Teatro implements IDirLogistica, IEncSuscripciones, IPublicista, IE
 	 * @see logica.IEncSuscripciones#consultarSuscripcion(int)
 	 */
 	public Suscripcion consultarSuscripcion(int cedula) {
-		Suscripcion sus = null;
-		for(int i=0; i<suscripciones.size(); i++) {
-			if (cedula == suscripciones.get(i).darCedula()) {
-				sus = suscripciones.get(i);
-				break;
-			}
+		con = new Conector("localhost", "BDTeatro", "postgres", "Yamile_00");
+		con.SetCadena("SELECT * FROM suscripcion WHERE n_cedula=" + cedula + "';");
+		tabla = con.consultar();
+		try {
+			suscripcion = new Suscripcion(cedula, tabla.getString("s_nombre"), tabla.getInt("n_cupo"));
+		} catch (Exception e) {
+			return null;
 		}
-		return sus;
+		con.cerrar();
+		return suscripcion;
 	}
 
 
@@ -75,8 +84,8 @@ public class Teatro implements IDirLogistica, IEncSuscripciones, IPublicista, IE
 	 * @see logica.IEncSuscripciones#crearSuscripcion(int, java.lang.String)
 	 */
 	public void crearSuscripcion(int cc, String nom) {
-		Suscripcion sus = new Suscripcion(cc, nom);
-		suscripciones.add(sus);
+		Suscripcion sus = new Suscripcion(cc, nom, 0);
+
 	}
 
 
@@ -92,7 +101,7 @@ public class Teatro implements IDirLogistica, IEncSuscripciones, IPublicista, IE
 	 * @see logica.IPublicista#agregarAnuncio(java.lang.String, java.util.Image)
 	 */
 	public void agregarAnuncio(String evento, Image slogan) {
-		consultarEvento(evento);//...
+		consultarEvento(evento).darAnuncio().setSlogan(slogan);
 	}
 
 
@@ -116,14 +125,17 @@ public class Teatro implements IDirLogistica, IEncSuscripciones, IPublicista, IE
 	 * @see logica.IEncReservas#consultartReserva(int)
 	 */
 	public Reserva consultartReserva(int cedula) {
-		Reserva res = null;
-		for(int i=0; i<reservas.size(); i++) {
-			if (cedula == reservas.get(i).darCedulaCliente()) {
-				res = reservas.get(i);
-				break;
-			}
+		con = new Conector("localhost", "BDTeatro", "postgres", "Yamile_00");
+		con.SetCadena("SELECT * FROM reserva WHERE n_cedula=" + cedula + "';");
+		tabla = con.consultar();
+		try {
+			//reserva = new Reserva();
+		} catch (Exception e) {
+			return null;
 		}
-		return res;
+		con.cerrar();
+		return reserva;		
+
 	}
 
 
@@ -132,7 +144,7 @@ public class Teatro implements IDirLogistica, IEncSuscripciones, IPublicista, IE
 	 */
 	public void crearReserva(int cc, String evento, Silla sillas) {
 		Reserva res = new Reserva(cc, evento);
-		reservas.add(res);
+
 	}
 
 

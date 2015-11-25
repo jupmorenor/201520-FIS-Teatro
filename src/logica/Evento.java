@@ -42,6 +42,10 @@ public class Evento {
 	public int darValorBase() {
 		return valorBase;
 	}
+	
+	public Anuncio darAnuncio() {
+		return anuncio;
+	}
 
 	public void publicarAnuncio() {
 		//Publica el anuncio en una red social 

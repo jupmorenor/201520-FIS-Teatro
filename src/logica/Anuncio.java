@@ -6,14 +6,14 @@ import java.util.Date;
 
 public class Anuncio {
 
-	private String id;
+	private String evento;
 
 	private Date fechaPublicacion;
 
 	private Image slogan;
 
-	public Anuncio(String id) {
-		this.id = id;
+	public Anuncio(String evento) {
+		this.evento = evento;
 	}
 
 	public void setSlogan(Image slogan) {
@@ -23,5 +23,22 @@ public class Anuncio {
 	public void setFechaPublicacion(Date fecha) {
 		fechaPublicacion = fecha;
 	}
+
+	public String getEvento() {
+		return evento;
+	}
+
+	public Date getFechaPublicacion() {
+		return fechaPublicacion;
+	}
+
+	public Image getSlogan() {
+		return slogan;
+	}
+
+	public void setEvento(String evento) {
+		this.evento = evento;
+	}
+	
 
 }
