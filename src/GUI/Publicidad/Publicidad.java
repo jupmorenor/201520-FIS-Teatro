@@ -62,8 +62,8 @@ public class Publicidad extends JFrame implements Contraseña{
     	pAgregar = new PAgregar(this);
 	}
     
-    public void pasarDatosAgregar(Icon slogan, String evento){
-    	iPublicista.agregarAnuncio(evento, (Image) slogan);
+    public void pasarDatosAgregar(Image slogan, String evento){
+    	iPublicista.agregarAnuncio(evento, slogan);
     }
 
 	@Override

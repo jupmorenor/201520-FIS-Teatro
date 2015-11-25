@@ -1,6 +1,7 @@
 package GUI.Publicidad;
 
 import java.awt.Container;
+import java.awt.Image;
 import java.io.File;
 
 import javax.swing.Icon;
@@ -18,7 +19,7 @@ public class PAgregar extends JFrame{
 	private final JTextField txtEvento;
 	private final JButton btnCargarImagen;
     private final JButton btnCrear;
-    private Icon imagen;
+    private Image imagen;
     
     private final Publicidad publicidad;
     
@@ -72,12 +73,13 @@ public class PAgregar extends JFrame{
 			 
 		if (seleccion == JFileChooser.APPROVE_OPTION) {
 			File file = fileChooserCargar.getSelectedFile();
-			imagen = new ImageIcon(file.toString());			
+			imagen = new ImageIcon(file.toString()).getImage();			
 		}
 	}
 
 	private void btnAgregarActionPerformed() {
 		publicidad.pasarDatosAgregar(imagen, txtEvento.getText());
+		this.dispose();
 	}
 
 }
