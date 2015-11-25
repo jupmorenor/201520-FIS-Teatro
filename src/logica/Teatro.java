@@ -16,6 +16,13 @@ public class Teatro implements IDirLogistica, IEncSuscripciones, IPublicista, IE
 
 	private ArrayList<Sala> salas;
 	
+	public Teatro() {
+		eventos = new ArrayList<Evento>();
+		reservas = new ArrayList<Reserva>();
+		suscripciones = new ArrayList<Suscripcion>();
+		salas = new ArrayList<Sala>();
+	}
+	
 	public Evento consultarEvento(String nombre) {
 		Evento e = null;
 		for(int i=0; i<eventos.size(); i++) {
