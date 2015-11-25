@@ -1,7 +1,5 @@
 package logica;
 
-import java.util.ArrayList;
-
 public class Seccion {
 
 	public static final String PLATEA = "PLATEA";
@@ -25,10 +23,39 @@ public class Seccion {
 	
 	private int maximoSillas;
 	
-	public Seccion(int maxSillas, String tipo) {
-		maximoSillas = maxSillas;
+	public Seccion(String tipo) {
 		estado = UTILIZABLE;
 		this.tipo = tipo;
+		
+		switch (tipo) {
+		case PALCO: 
+			sillas = new Silla[3][5];
+			maximoSillas = 15;
+			for (int i=0; i<3; i++) {
+				for (int j=0; j<5; j++) {
+					sillas[i][j] = new Silla(filas[i], j, this.tipo);
+				}
+			}
+			break;
+		case ANFITEATRO: 
+			sillas = new Silla[15][8]; 
+			maximoSillas = 120;
+			for (int i=0; i<15; i++) {
+				for (int j=0; j<8; j++) {
+					sillas[i][j] = new Silla(filas[i], j, this.tipo);
+				}
+			}
+			break;
+		case PLATEA: 
+			sillas = new Silla[15][5]; 
+			maximoSillas = 75;
+			for (int i=0; i<15; i++) {
+				for (int j=0; j<5; j++) {
+					sillas[i][j] = new Silla(filas[i], j, this.tipo);
+				}
+			}
+			break;
+		}
 	}
 
 	public boolean esPlatea() {
@@ -44,11 +71,11 @@ public class Seccion {
 	}
 
 	public boolean estaUtilizable() {
-		return tipo == UTILIZABLE;
+		return estado == UTILIZABLE;
 	}
 
 	public boolean estaLleno() {
-		return tipo == LLENO;
+		return estado == LLENO;
 	}
 
 	public Silla[][] darSillas() {
@@ -57,6 +84,10 @@ public class Seccion {
 	
 	public void setSillas(Silla[][] sillas) {
 		this.sillas = sillas;
+	}
+	
+	public int darMaximoSillas() {
+		return maximoSillas;
 	}
 
 }

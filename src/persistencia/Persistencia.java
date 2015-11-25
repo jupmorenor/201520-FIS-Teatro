@@ -4,6 +4,11 @@ import java.io.BufferedReader;
 import java.io.FileReader;
 import java.util.ArrayList;
 
+/**
+ * Clase que lee los datos de acceso a la BD desde un archivo de texto
+ * @author Juanpa y Yami
+ *
+ */
 public class Persistencia {
 	
 	private BufferedReader acceso;
@@ -26,10 +31,4 @@ public class Persistencia {
 		acceso.close();
 		return datos;
 	}
-	
-	public void guardarDatos() {
-		
-	}
-	
-
 }

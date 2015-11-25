@@ -55,7 +55,7 @@ public class Logistica extends JFrame implements Contraseña{
 	}
     
     public void pasarDatosCrear(Date fecha, String nombre, int edad, int valor){
-    	iDirLogistica.crearEvento(fecha, nombre, edad, valor);
+    	iDirLogistica.crearEvento(fecha, nombre, edad, valor, "Sala 1");
     	lAcomodar = new LAcomodar(this);
     }
 

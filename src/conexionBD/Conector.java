@@ -40,7 +40,7 @@ public class Conector
 	 * cargar consultas sql
 	 * @param cadena comando de la consulta
 	 */
-	public void SetCadena(String cadena) {
+	public void setCadena(String cadena) {
 		cadenaSql=cadena;
 	}
 
