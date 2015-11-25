@@ -1,9 +1,17 @@
-package GUI;
+package GUI.Publicidad;
 
 import java.awt.Container;
+import java.awt.Image;
+
+import javax.swing.Icon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.WindowConstants;
+
+import GUI.Contraseña;
+import GUI.Suscripciones.Suscripciones;
+import logica.IPublicista;
+import logica.Teatro;
 
 public class Publicidad extends JFrame implements Contraseña{
 
@@ -11,13 +19,20 @@ public class Publicidad extends JFrame implements Contraseña{
     private final JButton btnConsultar;
     private final JButton btnPublicar;
     
+    private final IPublicista iPublicista;
+    
+    private PAgregar pAgregar;
+    
     public Publicidad() {
         
+    	iPublicista = new Teatro();
+    	
         btnAgregar = new JButton();
         btnConsultar = new JButton();
         btnPublicar = new JButton();
         
-        btnAgregar.setText("Agregar anuncion");
+        btnAgregar.setText("Agregar anuncio");
+        btnAgregar.addActionListener(e -> btnAgregarActionPerformed());
         btnAgregar.setBounds(32, 27, 150, 23);
 
         btnConsultar.setText("Consultar anuncio");
@@ -39,10 +54,20 @@ public class Publicidad extends JFrame implements Contraseña{
         this.setVisible(true);
     }
 
-    @Override
+    private void btnAgregarActionPerformed() {
+    	pAgregar = new PAgregar(this);
+	}
+    
+    public void pasarDatosAgregar(Icon slogan, String evento){
+    	iPublicista.agregarAnuncio(evento, (Image) slogan);
+    }
+
+	@Override
     public int getContraseña() {
         return 56322;
     }
 
-    
+    public static void main(String[] args) {
+    	Publicidad publicidad = new Publicidad();
+	}
 }

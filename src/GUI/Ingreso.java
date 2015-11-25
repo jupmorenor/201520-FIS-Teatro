@@ -7,6 +7,12 @@ import javax.swing.JLabel;
 import javax.swing.JTextField;
 import javax.swing.WindowConstants;
 
+import GUI.Logistica.Logistica;
+import GUI.Pagos.Pagos;
+import GUI.Publicidad.Publicidad;
+import GUI.Reservas.Reserva;
+import GUI.Suscripciones.Suscripciones;
+
 /*
 Encargado reservas-----------78463
 Encargado subscripciones-----5550
@@ -65,9 +71,9 @@ public class Ingreso extends JFrame {
         
         switch (tipo) {
             case "Encargado reservas":
-                acceso = new Reservas();
+                acceso = new Reserva();
                 break;
-            case "Encargado subscripciones":
+            case "Encargado suscripciones":
                 acceso = new Suscripciones();
                 break;
             case "Director logistica":

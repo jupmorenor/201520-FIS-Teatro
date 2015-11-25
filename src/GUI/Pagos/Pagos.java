@@ -1,9 +1,11 @@
-package GUI;
+package GUI.Pagos;
 
 import java.awt.Container;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.WindowConstants;
+
+import GUI.Contraseña;
 
 public class Pagos extends JFrame implements Contraseña{
 

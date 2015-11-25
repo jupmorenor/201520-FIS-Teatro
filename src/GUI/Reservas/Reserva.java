@@ -1,17 +1,19 @@
-package GUI;
+package GUI.Reservas;
 
 import java.awt.Container;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.WindowConstants;
 
-public class Reservas extends JFrame implements Contraseña{
+import GUI.Contraseña;
+
+public class Reserva extends JFrame implements Contraseña{
 
     private final JButton btnConsultar;
     private final JButton btnCrear;
     private final JButton btnEliminar;
     
-    public Reservas() {
+    public Reserva() {
         btnCrear = new JButton();
         btnConsultar = new JButton();
         btnEliminar = new JButton();
