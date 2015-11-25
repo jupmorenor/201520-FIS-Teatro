@@ -53,7 +53,55 @@ public class Teatro implements IDirLogistica, IEncSuscripciones, IPublicista, IE
 
 	public void modificarSeccion(int[][] mtzIntPalco1, int[][] mtzIntPalco2, int[][] mtzIntPalco3,
 			int[][] mtzIntPalco4, int[][] mtzIntPlatea, int[][] mtzIntAnfiteatro) {
-		//FIXME hay que revisar la sala primero
+		ArrayList<Seccion> secciones = sala.darSecciones();
+		for (int i=0; i<mtzIntPalco1.length; i++) {
+			for (int j=0; j<mtzIntPalco1[i].length; j++) {
+				if (mtzIntPalco1[i][j]==1) {
+					secciones.get(0).darSillas()[i][j].dejarDisponible();
+				}
+			}
+		}
+		
+		for (int i=0; i<mtzIntPalco2.length; i++) {
+			for (int j=0; j<mtzIntPalco2[i].length; j++) {
+				if (mtzIntPalco2[i][j]==1) {
+					secciones.get(1).darSillas()[i][j].dejarDisponible();
+				}
+			}
+		}
+		
+		for (int i=0; i<mtzIntPalco3.length; i++) {
+			for (int j=0; j<mtzIntPalco3[i].length; j++) {
+				if (mtzIntPalco3[i][j]==1) {
+					secciones.get(2).darSillas()[i][j].dejarDisponible();
+				}
+			}
+		}
+		
+		for (int i=0; i<mtzIntPalco4.length; i++) {
+			for (int j=0; j<mtzIntPalco4[i].length; j++) {
+				if (mtzIntPalco4[i][j]==1) {
+					secciones.get(3).darSillas()[i][j].dejarDisponible();
+				}
+			}
+		}
+		
+		for (int i=0; i<mtzIntPlatea.length; i++) {
+			for (int j=0; j<mtzIntPlatea[i].length; j++) {
+				if (mtzIntPlatea[i][j]==1) {
+					secciones.get(4).darSillas()[i][j].dejarDisponible();
+				}
+			}
+		}
+		
+		for (int i=0; i<mtzIntAnfiteatro.length; i++) {
+			for (int j=0; j<mtzIntAnfiteatro[i].length; j++) {
+				if (mtzIntAnfiteatro[i][j]==1) {
+					secciones.get(5).darSillas()[i][j].dejarDisponible();
+				}
+			}
+		}
+		
 	}
 
 	/**

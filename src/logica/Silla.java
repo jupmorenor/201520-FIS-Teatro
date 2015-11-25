@@ -22,6 +22,7 @@ public class Silla{
 		this.fila = fila;
 		this.numero = numero;
 		this.seccion = seccion;
+		this.estado = null;
 	}
 
 	public boolean estaDisponible() {

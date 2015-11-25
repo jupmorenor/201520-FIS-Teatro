@@ -13,22 +13,20 @@ public class Sala {
 	public Sala(String nom) {
 		nombre = nom;
 		secciones = new ArrayList<Seccion>();
+		secciones.add(new Seccion(Seccion.PALCO));
+		secciones.add(new Seccion(Seccion.PALCO));
+		secciones.add(new Seccion(Seccion.PALCO));
+		secciones.add(new Seccion(Seccion.PALCO));
 		secciones.add(new Seccion(Seccion.PLATEA));
 		secciones.add(new Seccion(Seccion.ANFITEATRO));
-		secciones.add(new Seccion(Seccion.PALCO));
-		secciones.add(new Seccion(Seccion.PALCO));
-		secciones.add(new Seccion(Seccion.PALCO));
-		secciones.add(new Seccion(Seccion.PALCO));
+		
 	}
 
-	public Seccion darSeccion(String id) {
-		Seccion sec;
-		
-		return null;
+	public ArrayList<Seccion> darSecciones() {
+		return secciones;
 	}
 
 	public Silla[][] consultarDisponibilidadSillas(String evento) {
-		
 		return null;
 	}
 
