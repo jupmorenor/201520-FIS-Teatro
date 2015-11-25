@@ -2,15 +2,15 @@ package logica;
 
 public class Seccion {
 
-	private final String PLATEA = "PLATEA";
+	public static final String PLATEA = "PLATEA";
 
-	private final String ANFITEATRO = "ANFITEATRO";
+	public static final String ANFITEATRO = "ANFITEATRO";
 
-	private final String PALCO = "PALCO";
+	public static final String PALCO = "PALCO";
 
-	private final String UTILIZABLE = "UTILIZABLE";
+	public static final String UTILIZABLE = "UTILIZABLE";
 
-	private final String LLENO = "LLENO";
+	public static final String LLENO = "LLENO";
 
 	private String tipo;
 
@@ -19,31 +19,31 @@ public class Seccion {
 	private Silla[] sillas;
 
 	public boolean esPlatea() {
-		return false;
+		return tipo == PLATEA;
 	}
 
 	public boolean esAnfiteatro() {
-		return false;
+		return tipo == ANFITEATRO;
 	}
 
 	public boolean esPalco() {
-		return false;
+		return tipo == PALCO;
 	}
 
 	public boolean estaUtilizable() {
-		return false;
+		return tipo == UTILIZABLE;
 	}
 
 	public boolean estaLleno() {
-		return false;
+		return tipo == LLENO;
 	}
 
 	public void agregarSilla() {
 
 	}
 
-	public Silla darSillas() {
-		return null;
+	public Silla[] darSillas() {
+		return sillas;
 	}
 
 }

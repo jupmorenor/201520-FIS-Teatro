@@ -6,6 +6,6 @@ public interface IEncSuscripciones {
 
 	public abstract void crearSuscripcion(int cc, String nom);
 
-	public abstract void actualizarSuscripcion(int cc);
+	public abstract void actualizarSuscripcion(int cc, int cant);
 
 }

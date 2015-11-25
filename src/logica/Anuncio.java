@@ -13,15 +13,15 @@ public class Anuncio {
 	private Image slogan;
 
 	public Anuncio(String id) {
-
+		this.id = id;
 	}
 
 	public void setSlogan(Image slogan) {
-
+		this.slogan = slogan;
 	}
 
 	public void setFechaPublicacion(Date fecha) {
-
+		fechaPublicacion = fecha;
 	}
 
 }
