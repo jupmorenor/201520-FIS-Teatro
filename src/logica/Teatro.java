@@ -42,6 +42,7 @@ public class Teatro implements IDirLogistica, IEncSuscripciones, IPublicista, IE
 		con.setCadena("SELECT * FROM evento WHERE s_nombre='" + nombre + "';");
 		tabla = con.consultar();
 		try {
+			tabla.next();
 			evento = new Evento(tabla.getDate("f_evento"), nombre, tabla.getInt("n_edad_min"), tabla.getInt("n_val_base"));
 		} catch (Exception e) {
 			return null;
@@ -58,18 +59,22 @@ public class Teatro implements IDirLogistica, IEncSuscripciones, IPublicista, IE
 	/**
 	 * @see logica.IDirLogistica#crearEvento(java.util.Date, java.lang.String, int, int)
 	 */
-	public void crearEvento(Date f, String nom, int ed, int val, String sala) {		
-		String cadena = "INSERT INTO evento VALUES('" + f + "', '" + nom + "', " + ed + ", " + val;
+	public void crearEvento(String f, String nom, int ed, int val, String sala) {		
+		String cadena = "INSERT INTO evento(f_evento, s_nombre, n_edad_min, n_val_base";
+		String cadena2 = "VALUES('" + f + "', '" + nom + "', " + ed + ", " + val;
 		con = new Conector("localhost", "BDTeatro", "postgres", "Yamile_00");
-		con.setCadena("SELECT id_sala FROM sala WHERE _nombre='"+sala+"';");
+		con.setCadena("SELECT id_sala FROM sala WHERE s_nombre_sala='"+sala+"';");
 		tabla = con.consultar();
 
 		try {
-			cadena += ", "  + tabla.getInt("id_sala");
+			tabla.next();
+			cadena += ", id_sala"; 
+			cadena2 += ", "  + tabla.getInt("id_sala");
 		} catch (Exception e) {
 			
 		}
-		cadena += ");";
+		cadena += ") " + cadena2 + ");";
+		System.out.println(cadena);
 		con.setCadena(cadena);
 		con.ejecutarSql();
 	}
@@ -90,9 +95,10 @@ public class Teatro implements IDirLogistica, IEncSuscripciones, IPublicista, IE
 	 */
 	public Suscripcion consultarSuscripcion(int cedula) {
 		con = new Conector("localhost", "BDTeatro", "postgres", "Yamile_00");
-		con.setCadena("SELECT * FROM suscripcion WHERE n_cedula=" + cedula + "';");
+		con.setCadena("SELECT * FROM suscripcion WHERE n_cedula=" + cedula + ";");
 		tabla = con.consultar();
 		try {
+			tabla.next();
 			suscripcion = new Suscripcion(cedula, tabla.getString("s_nombre"), tabla.getInt("n_cupo"));
 		} catch (Exception e) {
 			return null;
@@ -106,7 +112,7 @@ public class Teatro implements IDirLogistica, IEncSuscripciones, IPublicista, IE
 	 */
 	public void crearSuscripcion(int cc, String nom) {
 		con = new Conector("localhost", "BDTeatro", "postgres", "Yamile_00");
-		con.setCadena("INSERT INTO suscripcion VALUES(n_cedula="+cc+", s_nombre='"+nom+"', n_cupo=0);");
+		con.setCadena("INSERT INTO suscripcion(n_cedula, s_nombre, n_cupo) VALUES ("+cc+", '"+nom+"', 0);");
 		con.ejecutarSql();
 	}
 
@@ -118,7 +124,7 @@ public class Teatro implements IDirLogistica, IEncSuscripciones, IPublicista, IE
 		suscripcion.aumentarCupo(cant);
 		con = new Conector("localhost", "BDTeatro", "postgres", "Yamile_00");
 		con.setCadena("UPDATE suscripcion SET n_cupo=" + suscripcion.darCupo() +
-				" WHERE n_cedula=" + suscripcion.darCedula() + "';");
+				" WHERE n_cedula=" + suscripcion.darCedula() + ";");
 		con.ejecutarSql();
 	}
 
@@ -151,8 +157,10 @@ public class Teatro implements IDirLogistica, IEncSuscripciones, IPublicista, IE
 			con = new Conector("localhost", "BDTeatro", "postgres", "Yamile_00");
 			con.setCadena("SELECT * FROM reserva WHERE n_cedula_cliente=" + cedula + "';");
 			tabla = con.consultar();
+			tabla.next();
 			con.setCadena("SELECT s_nombre FROM evento WHERE id_evento=" + tabla.getInt("id_evento") + ";");
 			tabla = con.consultar();
+			tabla.next();
 			reserva = new Reserva(cedula, tabla.getString("s_nombre"));
 		} catch (Exception e) {
 			return null;
@@ -165,23 +173,26 @@ public class Teatro implements IDirLogistica, IEncSuscripciones, IPublicista, IE
 	 * @see logica.IEncReservas#crearReserva(int, java.lang.String, logica.Silla)
 	 */
 	public void crearReserva(int cc, String evento, Silla sillas) {
-		String cadena = "INSERT INTO reserva VALUES(n_cedula_cliente=" + cc;
+		String cadena = "INSERT INTO reserva(n_cedula_cliente, " + cc;
+		String cadena2 = "VALUES(" + cc;
 		con = new Conector("localhost", "BDTeatro", "postgres", "Yamile_00");
 		con.setCadena("SELECT id_evento FROM evento WHERE s_nombre='" + evento + "';");
 		tabla = con.consultar();
 		try {
-			cadena += ", id_evento=" + tabla.getInt("id_evento");
+			cadena += ", id_evento";
+			cadena2 += ", " + tabla.getInt("id_evento");
 		} catch (Exception e) {
 			
 		}
 		con.setCadena("SELECT id_suscripcion FROM suscripcion WHERE n_cedula_cliente=" + cc + ";");
 		tabla = con.consultar();
 		try {
-			cadena += ", id_suscripcion=" + tabla.getInt("id_suscripcion");
+			cadena += ", id_suscripcion";
+			cadena2 += ", " + tabla.getInt("id_suscripcion");
 		} catch (Exception e) {
 			
 		}
-		cadena += ");";
+		cadena += ") " + cadena2 + ");";
 		con.setCadena(cadena);
 		con.ejecutarSql();
 	}

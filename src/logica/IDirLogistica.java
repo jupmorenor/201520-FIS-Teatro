@@ -4,7 +4,7 @@ import java.util.Date;
 
 public interface IDirLogistica {
 
-	public abstract void crearEvento(Date f, String nom, int ed, int val, String sala);
+	public abstract void crearEvento(String f, String nom, int ed, int val, String sala);
 
 	public abstract void modificarEvento(String nom, Date f);
 	

@@ -1,6 +1,7 @@
 package GUI.Logistica;
 
 import java.awt.Container;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 
 import javax.swing.DefaultComboBoxModel;
@@ -54,9 +55,9 @@ public class LCrear extends JFrame{
         lblValorBase.setText("Valor base: ");
         lblValorBase.setBounds(10, 110, 70, 23);
         
-        txtNombre.setBounds(80, 20, 140, 23);
-        txtEdad.setBounds(80, 80, 140, 23);
-        txtValorBase.setBounds(80, 110, 140, 23);
+        txtNombre.setBounds(80, 20, 160, 23);
+        txtEdad.setBounds(80, 80, 160, 23);
+        txtValorBase.setBounds(80, 110, 160, 23);
         
         btnCrear.setText("Crear");
         btnCrear.addActionListener(e -> btnCrearActionPerformed());
@@ -85,10 +86,10 @@ public class LCrear extends JFrame{
         
         String[] años = new String[38];
         for(int i=0; i<años.length; i++){
-        	años[i] = (i<9 ? "0" + (i+1) : "" + (i+1)); 
+        	años[i] = ((i+5)<=9 ? "201" + (i+5) : "20" + (i+15)); 
         }
         cboAño.setModel(new DefaultComboBoxModel(años));
-        cboAño.setBounds(180, 50, 40, 23);
+        cboAño.setBounds(180, 50, 60, 23);
         
         Container contenedor = getContentPane();
         contenedor.setLayout(null);
@@ -114,12 +115,10 @@ public class LCrear extends JFrame{
 
 	private void btnCrearActionPerformed() {
 		
-		int dia = Integer.parseInt(cboDia.getSelectedItem().toString());
-		int mes = Integer.parseInt(cboMes.getSelectedItem().toString());
-		int año = Integer.parseInt(cboAño.getSelectedItem().toString());
-		@SuppressWarnings("deprecation")
-		Date fecha = new Date(año,mes,dia);
-		
+		String dia = cboDia.getSelectedItem().toString();
+		String mes = cboMes.getSelectedItem().toString();
+		String año = cboAño.getSelectedItem().toString();
+		String fecha = año+"-"+mes+"-"+dia;
 		String nombre = txtNombre.getText();
 		int edad = Integer.parseInt(txtEdad.getText());
 		int valor = Integer.parseInt(txtValorBase.getText());

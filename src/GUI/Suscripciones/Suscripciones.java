@@ -62,7 +62,11 @@ public class Suscripciones extends JFrame implements Contraseña{
     	String dato = JOptionPane.showInputDialog("Ingrese la cedula");
     	int cedula = Integer.parseInt(dato);
     	Suscripcion suscripcion = iEncSuscripciones.consultarSuscripcion(cedula);
-    	SConsultar sConsultar = new SConsultar(suscripcion);
+    	if (suscripcion!=null) {
+    		SConsultar sConsultar = new SConsultar(suscripcion);
+    	} else {
+    		JOptionPane.showMessageDialog(this, "no se encuentra la suscripcion", "No encontrado", JOptionPane.ERROR_MESSAGE);
+    	}
 	}
 	
 	private void btnActualizarActionPerformed() {
