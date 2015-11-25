@@ -52,12 +52,8 @@ public class Seccion {
 		return tipo == LLENO;
 	}
 
-	public void agregarSilla() {
-		//TODO redefinir esta parte
-	}
-
-	public Silla darSillas() {
-		return sillas.get(0);
+	public ArrayList<Silla> darSillas() {
+		return sillas;
 	}
 
 }

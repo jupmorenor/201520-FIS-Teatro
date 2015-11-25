@@ -2,7 +2,7 @@ package logica;
 
 import java.util.ArrayList;
 
-public class Reserva {
+public class Reserva{
 
 	private int cedulaCliente;
 

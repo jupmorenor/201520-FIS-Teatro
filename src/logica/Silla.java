@@ -1,6 +1,6 @@
 package logica;
 
-public class Silla {
+public class Silla{
 
 	public static final String DISPONIBLE = "DISPONIBLE";
 
