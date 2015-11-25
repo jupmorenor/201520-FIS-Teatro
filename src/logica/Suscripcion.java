@@ -11,23 +11,24 @@ public class Suscripcion {
 	private Reserva reserva;
 
 	public Suscripcion(int cedula, String nombre) {
-
+		this.cedula = cedula;
+		this.nombre = nombre;
 	}
 
 	public int darCedula() {
-		return 0;
+		return cedula;
 	}
 
 	public String darNombre() {
-		return null;
+		return nombre;
 	}
 
 	public int darCupo() {
-		return 0;
+		return cupo;
 	}
 
 	public void aumentarCupo(int cant) {
-
+		cupo+=cant;
 	}
 
 }

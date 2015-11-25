@@ -1,49 +1,63 @@
 package logica;
 
+import java.util.ArrayList;
+
 public class Seccion {
 
-	private final String PLATEA = "PLATEA";
+	public static final String PLATEA = "PLATEA";
 
-	private final String ANFITEATRO = "ANFITEATRO";
+	public static final String ANFITEATRO = "ANFITEATRO";
 
-	private final String PALCO = "PALCO";
+	public static final String PALCO = "PALCO";
 
-	private final String UTILIZABLE = "UTILIZABLE";
+	public static final String UTILIZABLE = "UTILIZABLE";
 
-	private final String LLENO = "LLENO";
+	public static final String LLENO = "LLENO";
+	
+	private final char filas[] = {'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J',
+			'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z'};
 
 	private String tipo;
 
 	private String estado;
 
-	private Silla[] sillas;
+	private ArrayList<Silla> sillas;
+	
+	private int maximoSillas;
+	
+	public Seccion(int maxSillas, String tipo) {
+		sillas = new ArrayList<Silla>();
+		maximoSillas = maxSillas;
+		estado = UTILIZABLE;
+		this.tipo = tipo;
+	}
 
 	public boolean esPlatea() {
-		return false;
+		return tipo == PLATEA;
 	}
 
 	public boolean esAnfiteatro() {
-		return false;
+		return tipo == ANFITEATRO;
 	}
 
 	public boolean esPalco() {
-		return false;
+		return tipo == PALCO;
 	}
 
 	public boolean estaUtilizable() {
-		return false;
+		return tipo == UTILIZABLE;
 	}
 
 	public boolean estaLleno() {
-		return false;
+		return tipo == LLENO;
 	}
 
 	public void agregarSilla() {
-
+		//TODO redefinir esta parte
 	}
 
 	public Silla darSillas() {
-		return null;
+		return sillas.get(0);
 	}
 
 }

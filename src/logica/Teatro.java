@@ -1,5 +1,6 @@
 package logica;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.awt.Image;
 
@@ -7,20 +8,34 @@ public class Teatro implements IDirLogistica, IEncSuscripciones, IPublicista, IE
 
 	private int totalRecaudado;
 
-	private Evento[] eventos;
+	private ArrayList<Evento> eventos;
 
-	private Reserva[] reservas;
+	private ArrayList<Reserva> reservas;
 
-	private Suscripcion[] suscripciones;
+	private ArrayList<Suscripcion> suscripciones;
 
-	private Sala[] salas;
-
+	private ArrayList<Sala> salas;
+	
+	public Teatro() {
+		eventos = new ArrayList<Evento>();
+		reservas = new ArrayList<Reserva>();
+		suscripciones = new ArrayList<Suscripcion>();
+		salas = new ArrayList<Sala>();
+	}
+	
 	public Evento consultarEvento(String nombre) {
-		return null;
+		Evento e = null;
+		for(int i=0; i<eventos.size(); i++) {
+			if (nombre == eventos.get(i).darNombre()) {
+				e = eventos.get(i);
+				break;
+			}
+		}
+		return e;
 	}
 
 	public void modificarSeccion() {
-
+		//FIXME hay que revisar la sala primero
 	}
 
 
@@ -28,7 +43,8 @@ public class Teatro implements IDirLogistica, IEncSuscripciones, IPublicista, IE
 	 * @see logica.IDirLogistica#crearEvento(java.util.Date, java.lang.String, int, int)
 	 */
 	public void crearEvento(Date f, String nom, int ed, int val) {
-
+		Evento e = new Evento(f, nom, ed, val);
+		eventos.add(e);
 	}
 
 
@@ -36,7 +52,7 @@ public class Teatro implements IDirLogistica, IEncSuscripciones, IPublicista, IE
 	 * @see logica.IDirLogistica#modificarEvento(java.lang.String, java.util.Date)
 	 */
 	public void modificarEvento(String nom, Date f) {
-
+		consultarEvento(nom).cambiarFecha(f);
 	}
 
 
@@ -44,7 +60,14 @@ public class Teatro implements IDirLogistica, IEncSuscripciones, IPublicista, IE
 	 * @see logica.IEncSuscripciones#consultarSuscripcion(int)
 	 */
 	public Suscripcion consultarSuscripcion(int cedula) {
-		return null;
+		Suscripcion sus = null;
+		for(int i=0; i<suscripciones.size(); i++) {
+			if (cedula == suscripciones.get(i).darCedula()) {
+				sus = suscripciones.get(i);
+				break;
+			}
+		}
+		return sus;
 	}
 
 
@@ -52,15 +75,16 @@ public class Teatro implements IDirLogistica, IEncSuscripciones, IPublicista, IE
 	 * @see logica.IEncSuscripciones#crearSuscripcion(int, java.lang.String)
 	 */
 	public void crearSuscripcion(int cc, String nom) {
-
+		Suscripcion sus = new Suscripcion(cc, nom);
+		suscripciones.add(sus);
 	}
 
 
 	/**
 	 * @see logica.IEncSuscripciones#actualizarSuscripcion(int)
 	 */
-	public void actualizarSuscripcion(int cc) {
-
+	public void actualizarSuscripcion(int cc, int cant) {
+		consultarSuscripcion(cc).aumentarCupo(cant);
 	}
 
 
@@ -68,7 +92,7 @@ public class Teatro implements IDirLogistica, IEncSuscripciones, IPublicista, IE
 	 * @see logica.IPublicista#agregarAnuncio(java.lang.String, java.util.Image)
 	 */
 	public void agregarAnuncio(String evento, Image slogan) {
-
+		consultarEvento(evento);//...
 	}
 
 
@@ -76,7 +100,7 @@ public class Teatro implements IDirLogistica, IEncSuscripciones, IPublicista, IE
 	 * @see logica.IPublicista#publicarAnuncio(java.lang.String)
 	 */
 	public void publicarAnuncio(String evento) {
-
+		
 	}
 
 
@@ -92,7 +116,14 @@ public class Teatro implements IDirLogistica, IEncSuscripciones, IPublicista, IE
 	 * @see logica.IEncReservas#consultartReserva(int)
 	 */
 	public Reserva consultartReserva(int cedula) {
-		return null;
+		Reserva res = null;
+		for(int i=0; i<reservas.size(); i++) {
+			if (cedula == reservas.get(i).darCedulaCliente()) {
+				res = reservas.get(i);
+				break;
+			}
+		}
+		return res;
 	}
 
 
@@ -100,7 +131,8 @@ public class Teatro implements IDirLogistica, IEncSuscripciones, IPublicista, IE
 	 * @see logica.IEncReservas#crearReserva(int, java.lang.String, logica.Silla)
 	 */
 	public void crearReserva(int cc, String evento, Silla sillas) {
-
+		Reserva res = new Reserva(cc, evento);
+		reservas.add(res);
 	}
 
 
@@ -116,7 +148,7 @@ public class Teatro implements IDirLogistica, IEncSuscripciones, IPublicista, IE
 	 * @see logica.IEncPagos#darTotalRecaudado()
 	 */
 	public int darTotalRecaudado() {
-		return 0;
+		return totalRecaudado;
 	}
 
 
@@ -124,7 +156,7 @@ public class Teatro implements IDirLogistica, IEncSuscripciones, IPublicista, IE
 	 * @see logica.IEncPagos#pagarReserva(int)
 	 */
 	public void pagarReserva(int valor) {
-
+		totalRecaudado += valor;
 	}
 
 }

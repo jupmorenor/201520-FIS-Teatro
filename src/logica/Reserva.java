@@ -1,27 +1,30 @@
 package logica;
 
+import java.util.ArrayList;
+
 public class Reserva {
 
 	private int cedulaCliente;
 
 	private String nombreEvento;
 
-	private Silla[] sillas;
+	private ArrayList<Silla> sillas;
 
 	public Reserva(int cc, String nom) {
-
+		cedulaCliente = cc;
+		nombreEvento = nom;
 	}
 
 	public int darCedulaCliente() {
-		return 0;
+		return cedulaCliente;
 	}
 
-	public Silla darSillas() {
-		return null;
+	public ArrayList<Silla> darSillas() {
+		return sillas;
 	}
 
 	public String darNombreEvento() {
-		return null;
+		return nombreEvento;
 	}
 
 }

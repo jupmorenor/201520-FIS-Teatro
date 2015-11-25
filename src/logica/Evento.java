@@ -17,31 +17,34 @@ public class Evento {
 	private Anuncio anuncio;
 
 	public Evento(Date fecha, String nom, int ed, int val) {
-
+		this.fecha = fecha;
+		nombre = nom;
+		edadMinima = ed;
+		valorBase = val;
 	}
 
 	public Date darFecha() {
-		return null;
+		return fecha;
 	}
 
 	public String darNombre() {
-		return null;
+		return nombre;
 	}
 
 	public int darEdadMinima() {
-		return 0;
+		return edadMinima;
 	}
 
 	public void cambiarFecha(Date fecha) {
-
+		this.fecha = fecha;
 	}
 
 	public int darValorBase() {
-		return 0;
+		return valorBase;
 	}
 
 	public void publicarAnuncio() {
-
+		//Publica el anuncio en una red social 
 	}
 
 }
