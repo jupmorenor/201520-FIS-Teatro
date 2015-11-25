@@ -23,6 +23,7 @@ public class Suscripciones extends JFrame implements Contraseña{
     private final JButton btnCrear;
     private final IEncSuscripciones iEncSuscripciones;
     private SCrear sCrear;
+    private SActualizar sActualizar;
     
     public Suscripciones() {
         
@@ -41,6 +42,7 @@ public class Suscripciones extends JFrame implements Contraseña{
         btnConsultar.setBounds(30, 70, 170, 23);
         
         btnActualizar.setText("Actualizar cupos");
+        btnActualizar.addActionListener(e -> btnActualizarActionPerformed());
         btnActualizar.setBounds(30, 110, 170, 23);
 
         Container contenedor = getContentPane();
@@ -56,11 +58,15 @@ public class Suscripciones extends JFrame implements Contraseña{
         this.setVisible(true);
     }
 
-    private void btnConsultarActionPerformed() {
+	private void btnConsultarActionPerformed() {
     	String dato = JOptionPane.showInputDialog("Ingrese la cedula");
     	int cedula = Integer.parseInt(dato);
     	Suscripcion suscripcion = iEncSuscripciones.consultarSuscripcion(cedula);
     	SConsultar sConsultar = new SConsultar(suscripcion);
+	}
+	
+	private void btnActualizarActionPerformed() {
+    	sActualizar = new SActualizar(this);
 	}
 
 	private void btnCrearActionPerformed() {
@@ -70,6 +76,10 @@ public class Suscripciones extends JFrame implements Contraseña{
     public void pasarDatosCrear(String nom, int cc){
     	iEncSuscripciones.crearSuscripcion(cc, nom);
     }
+    
+    public void pasarDatosActualizar(int cupo, int cedula) {
+		iEncSuscripciones.actualizarSuscripcion(cedula, cupo);
+	}
 
 	@Override
     public int getContraseña() {
@@ -79,4 +89,6 @@ public class Suscripciones extends JFrame implements Contraseña{
 	public static void main(String[] args) {
 		new Suscripciones();
 	}
+
+	
 }
