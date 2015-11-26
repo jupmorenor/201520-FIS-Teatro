@@ -26,7 +26,12 @@ public class Teatro implements IDirLogistica, IEncSuscripciones, IPublicista, IE
 	
 	private Persistencia acceso;
 	
+	ArrayList<String> datos;
+	
 	public Teatro() {
+		acceso = new Persistencia();
+		acceso.cargarDatos("./data/info.xtx");
+		datos = acceso.leerDatos();
 		sala = new Sala("Sala 1");
 		con = new Conector("localhost", "BDTeatro", "postgres", "Yamile_00");
 		con.setCadena("INSERT INTO sala VALUES('" + sala.getNombre() + "');");
@@ -37,8 +42,8 @@ public class Teatro implements IDirLogistica, IEncSuscripciones, IPublicista, IE
 	 * @param nombre Nombre del evento
 	 * @return Evento
 	 */
-	public Evento consultarEvento(String nombre) {
-		con = new Conector("localhost", "BDTeatro", "postgres", "Yamile_00");
+	public Evento consultarEvento(String nombre) {	
+		con = new Conector(datos.get(0), datos.get(1), datos.get(2), datos.get(3));
 		con.setCadena("SELECT * FROM evento WHERE s_nombre='" + nombre + "';");
 		tabla = con.consultar();
 		try {
@@ -110,7 +115,7 @@ public class Teatro implements IDirLogistica, IEncSuscripciones, IPublicista, IE
 	public void crearEvento(String f, String nom, int ed, int val, String sala) {		
 		String cadena = "INSERT INTO evento(f_evento, s_nombre, n_edad_min, n_val_base";
 		String cadena2 = "VALUES('" + f + "', '" + nom + "', " + ed + ", " + val;
-		con = new Conector("localhost", "BDTeatro", "postgres", "Yamile_00");
+		con = new Conector(datos.get(0), datos.get(1), datos.get(2), datos.get(3));
 		con.setCadena("SELECT id_sala FROM sala WHERE s_nombre_sala='"+sala+"';");
 		tabla = con.consultar();
 
@@ -133,7 +138,7 @@ public class Teatro implements IDirLogistica, IEncSuscripciones, IPublicista, IE
 	public void modificarEvento(String nom, Date f) {
 		evento = consultarEvento(nom);
 		evento.cambiarFecha(f);
-		con = new Conector("localhost", "BDTeatro", "postgres", "Yamile_00");
+		con = new Conector(datos.get(0), datos.get(1), datos.get(2), datos.get(3));
 		con.setCadena("UPDATE evento SET f_evento='" + evento.darFecha() +
 				"' WHERE s_nombre='" + evento.darNombre() + "';");
 	}
@@ -142,7 +147,7 @@ public class Teatro implements IDirLogistica, IEncSuscripciones, IPublicista, IE
 	 * @see logica.IEncSuscripciones#consultarSuscripcion(int)
 	 */
 	public Suscripcion consultarSuscripcion(int cedula) {
-		con = new Conector("localhost", "BDTeatro", "postgres", "Yamile_00");
+		con = new Conector(datos.get(0), datos.get(1), datos.get(2), datos.get(3));
 		con.setCadena("SELECT * FROM suscripcion WHERE n_cedula=" + cedula + ";");
 		tabla = con.consultar();
 		try {
@@ -159,7 +164,7 @@ public class Teatro implements IDirLogistica, IEncSuscripciones, IPublicista, IE
 	 * @see logica.IEncSuscripciones#crearSuscripcion(int, java.lang.String)
 	 */
 	public void crearSuscripcion(int cc, String nom) {
-		con = new Conector("localhost", "BDTeatro", "postgres", "Yamile_00");
+		con = new Conector(datos.get(0), datos.get(1), datos.get(2), datos.get(3));
 		con.setCadena("INSERT INTO suscripcion(n_cedula, s_nombre, n_cupo) VALUES ("+cc+", '"+nom+"', 0);");
 		con.ejecutarSql();
 	}
@@ -170,7 +175,7 @@ public class Teatro implements IDirLogistica, IEncSuscripciones, IPublicista, IE
 	public void actualizarSuscripcion(int cc, int cant) {
 		suscripcion = consultarSuscripcion(cc);
 		suscripcion.aumentarCupo(cant);
-		con = new Conector("localhost", "BDTeatro", "postgres", "Yamile_00");
+		con = new Conector(datos.get(0), datos.get(1), datos.get(2), datos.get(3));
 		con.setCadena("UPDATE suscripcion SET n_cupo=" + suscripcion.darCupo() +
 				" WHERE n_cedula=" + suscripcion.darCedula() + ";");
 		con.ejecutarSql();
@@ -202,7 +207,7 @@ public class Teatro implements IDirLogistica, IEncSuscripciones, IPublicista, IE
 	 */
 	public Reserva consultarReserva(int cedula) {
 		try {
-			con = new Conector("localhost", "BDTeatro", "postgres", "Yamile_00");
+			con = new Conector(datos.get(0), datos.get(1), datos.get(2), datos.get(3));
 			con.setCadena("SELECT * FROM reserva WHERE n_cedula_cliente=" + cedula + "';");
 			tabla = con.consultar();
 			tabla.next();
@@ -223,7 +228,7 @@ public class Teatro implements IDirLogistica, IEncSuscripciones, IPublicista, IE
 	public void crearReserva(int cc, String evento, Silla sillas) {
 		String cadena = "INSERT INTO reserva(n_cedula_cliente, " + cc;
 		String cadena2 = "VALUES(" + cc;
-		con = new Conector("localhost", "BDTeatro", "postgres", "Yamile_00");
+		con = new Conector(datos.get(0), datos.get(1), datos.get(2), datos.get(3));
 		con.setCadena("SELECT id_evento FROM evento WHERE s_nombre='" + evento + "';");
 		tabla = con.consultar();
 		try {
@@ -250,7 +255,7 @@ public class Teatro implements IDirLogistica, IEncSuscripciones, IPublicista, IE
 	 */
 	public void eliminarReserva(int cc) {
 		reserva = consultarReserva(cc);
-		con = new Conector("localhost", "BDTeatro", "postgres", "Yamile_00");
+		con = new Conector(datos.get(0), datos.get(1), datos.get(2), datos.get(3));
 		con.setCadena("DELETE FROM reserva WHERE n_cedula_cliente=" + reserva.darCedulaCliente() + ";");
 	}
 

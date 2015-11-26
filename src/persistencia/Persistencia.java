@@ -18,17 +18,25 @@ public class Persistencia {
 
 	}
 	
-	public void cargarDatos(String ubicacion) throws Exception {
-		acceso = new BufferedReader(new FileReader(ubicacion));
+	public void cargarDatos(String ubicacion) {
+		try {
+			acceso = new BufferedReader(new FileReader(ubicacion));
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 	}
 	
-	public ArrayList<String> leerDatos() throws Exception {
+	public ArrayList<String> leerDatos() {
 		String linea;
 		datos = new ArrayList<String>();
-		while((linea = acceso.readLine())!=null) {
-			datos.add(linea);
+		try {
+			while((linea = acceso.readLine())!=null) {
+				datos.add(linea);
+			}
+			acceso.close();
+		} catch (Exception e) {
+			datos.add(null);
 		}
-		acceso.close();
 		return datos;
 	}
 }
