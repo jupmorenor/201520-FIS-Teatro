@@ -33,7 +33,7 @@ public class Teatro implements IDirLogistica, IEncSuscripciones, IPublicista, IE
 		acceso.cargarDatos("./data/info.xtx");
 		datos = acceso.leerDatos();
 		sala = new Sala("Sala 1");
-		con = new Conector("localhost", "BDTeatro", "postgres", "Yamile_00");
+		con = new Conector(datos.get(0), datos.get(1), datos.get(2), datos.get(3));
 		con.setCadena("INSERT INTO sala VALUES('" + sala.getNombre() + "');");
 	}
 	
