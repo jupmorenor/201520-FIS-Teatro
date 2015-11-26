@@ -23,10 +23,12 @@ public class Seccion {
 	
 	private int maximoSillas;
 	
-	public Seccion(String tipo) {
+	private String id;
+	
+	public Seccion(String tipo, String id) {
 		estado = UTILIZABLE;
 		this.tipo = tipo;
-		
+		this.id = id;
 		switch (tipo) {
 		case PALCO: 
 			sillas = new Silla[3][5];
@@ -88,6 +90,10 @@ public class Seccion {
 	
 	public int darMaximoSillas() {
 		return maximoSillas;
+	}
+
+	public String getId() {
+		return id;
 	}
 
 }

@@ -225,7 +225,7 @@ public class Teatro implements IDirLogistica, IEncSuscripciones, IPublicista, IE
 	/**
 	 * @see logica.IEncReservas#crearReserva(int, java.lang.String, logica.Silla)
 	 */
-	public void crearReserva(int cc, String evento, Silla sillas) {
+	public void crearReserva(int cc, String evento, Silla[] sillas) {
 		String cadena = "INSERT INTO reserva(n_cedula_cliente, " + cc;
 		String cadena2 = "VALUES(" + cc;
 		con = new Conector(datos.get(0), datos.get(1), datos.get(2), datos.get(3));
@@ -248,6 +248,8 @@ public class Teatro implements IDirLogistica, IEncSuscripciones, IPublicista, IE
 		cadena += ") " + cadena2 + ");";
 		con.setCadena(cadena);
 		con.ejecutarSql();
+		
+		
 	}
 
 	/**
@@ -275,5 +277,10 @@ public class Teatro implements IDirLogistica, IEncSuscripciones, IPublicista, IE
 
 	public Sala getSala() {
 		return sala;
+	}
+
+	@Override
+	public Silla[][] consultarDisponibilidadSillas(String seccion) {
+		return sala.consultarSillasSeccion(seccion);
 	}
 }
