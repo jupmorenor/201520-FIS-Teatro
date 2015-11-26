@@ -192,7 +192,7 @@ public class Teatro implements IDirLogistica, IEncSuscripciones, IPublicista, IE
 	 * @see logica.IPublicista#publicarAnuncio(java.lang.String)
 	 */
 	public void publicarAnuncio(String evento) {
-		
+		//TODO publica un anuncio en redes sociales
 	}
 
 	/**
